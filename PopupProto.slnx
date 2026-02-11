@@ -2,6 +2,10 @@
   <Folder Name="/Solution Items/">
     <File Path="global.json" />
   </Folder>
+  <Project Path="Plugin.Maui.SmartNavigation.Attributes/Plugin.Maui.SmartNavigation.Attributes.csproj" />
+  <Project Path="Plugin.Maui.SmartNavigation.MopupsExtensions/Plugin.Maui.SmartNavigation.MopupsExtensions.csproj" />
+  <Project Path="Plugin.Maui.SmartNavigation.SourceGenerators/Plugin.Maui.SmartNavigation.SourceGenerators.csproj" />
+  <Project Path="Plugin.Maui.SmartNavigation/Plugin.Maui.SmartNavigation.csproj" />
   <Project Path="PopupProto/PopupProto.csproj">
     <Deploy Solution="Debug|*" />
   </Project>
