@@ -52,6 +52,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\Plugin.Maui.SmartNavigation.MCTPopupExtensions\Plugin.Maui.SmartNavigation.MCTPopupExtensions.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <MauiXaml Update="SimplePopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

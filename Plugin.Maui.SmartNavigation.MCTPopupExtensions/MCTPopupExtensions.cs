@@ -8,11 +8,19 @@ namespace Plugin.Maui.SmartNavigation;
 
 public static class MCTPopupExtensions
 {
-    public static async Task<IPopupResult> PushAsync<T>(this IPopupService _, IPopupOptions? options, params object[] parameters) where T : Popup
+    public static Task<IPopupResult> ShowPopupAsync<T>(this IPopupService _, IPopupOptions? options, CancellationToken cancellationToken, params object[] parameters) where T : Popup
     {
         var popup = NavigationExtensions.ResolvePage<T>(parameters) as Popup
-            ?? throw new ArgumentException("Could not resolve popup page");
+           ?? throw new ArgumentException("Could not resolve popup page");
 
-        return await popup.Navigation.ShowPopupAsync(popup, options);
+        return popup.Navigation.ShowPopupAsync(popup, options, cancellationToken);
+    }
+
+    public static Task<IPopupResult<TResult>> ShowPopupAsync<T, TResult>(this IPopupService _, IPopupOptions? options, CancellationToken cancellationToken, params object[] parameters) where T : Popup
+    {
+        var popup = NavigationExtensions.ResolvePage<T>(parameters) as Popup
+          ?? throw new ArgumentException("Could not resolve popup page");
+
+        return popup.Navigation.ShowPopupAsync<TResult>(popup, options, cancellationToken);
     }
 }

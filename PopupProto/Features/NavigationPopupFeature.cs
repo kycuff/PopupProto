@@ -1,12 +1,8 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Core;
-using CommunityToolkit.Maui.Extensions;
 using CommunityToolkit.Maui.Views;
-using System;
-using System.Collections.Generic;
+using Plugin.Maui.SmartNavigation;
 using System.Diagnostics;
-using System.Text;
-using System.Xml.Linq;
 
 namespace PopupProto.Features;
 
@@ -44,13 +40,23 @@ public class NavigationPopupFeature : INavigationPopupFeature
         _popupService = popupService;
     }
 
-    public Task<IPopupResult> ShowPopupAsync<T>(IPopupOptions? options = null, CancellationToken cancellationToken = default) where T : notnull
+    public Task<IPopupResult> ShowPopupAsync<T>(IPopupOptions? options, CancellationToken cancellationToken) where T : notnull
     {
         return _popupService.ShowPopupAsync<T>(Navigation, options, cancellationToken);
     }
 
-    public Task<IPopupResult<TResult>> ShowPopupAsync<T, TResult>(IPopupOptions? options = null, CancellationToken cancellationToken = default) where T : notnull
+    public Task<IPopupResult<TResult>> ShowPopupAsync<T, TResult>(IPopupOptions? options, CancellationToken cancellationToken) where T : notnull
     {
         return _popupService.ShowPopupAsync<T, TResult>(Navigation, options, cancellationToken);
+    }
+
+    public Task<IPopupResult> ShowPopupAsync<T>(IPopupOptions? options, CancellationToken cancellationToken, params object[] parameters) where T : Popup
+    {
+        return _popupService.ShowPopupAsync<T>(options, cancellationToken, parameters);
+    }
+
+    public Task<IPopupResult<TResult>> ShowPopupAsync<T, TResult>(IPopupOptions? options, CancellationToken cancellationToken, params object[] parameters) where T : Popup
+    {
+        return _popupService.ShowPopupAsync<T, TResult>(options, cancellationToken, parameters);
     }
 }
