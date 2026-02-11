@@ -17,7 +17,7 @@ namespace PopupProto
         private async void OnSimpleButtonClicked(object sender, EventArgs e)
         {
             // Use the navigation popup feature
-            IPopupResult result = await _popupNavigation.PushAsync<SimplePopup>();
+            IPopupResult result = await _popupNavigation.ShowPopupAsync<SimplePopup>();
 
             if(result is IPopupResult message)
             {

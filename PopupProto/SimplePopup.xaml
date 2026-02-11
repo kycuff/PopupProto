@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-               xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-               x:Class="PopupTestApp.SimplePopup">
-    <VerticalStackLayout Padding="20" Spacing="15" BackgroundColor="White">
-        <Label Text="Hello from Popup!" FontSize="18" HorizontalOptions="Center"/>
-        <Button Text="Close" Clicked="OnCloseClicked"/>
+<ContentPage
+    x:Class="PopupTestApp.SimplePopup"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    <VerticalStackLayout
+        Padding="20"
+        BackgroundColor="White"
+        Spacing="15">
+        <Label
+            FontSize="18"
+            HorizontalOptions="Center"
+            Text="Hello from Popup!" />
+        <Button Clicked="OnCloseClicked" Text="Close" />
     </VerticalStackLayout>
-</toolkit:Popup>
+</ContentPage>

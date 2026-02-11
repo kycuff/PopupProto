@@ -1,16 +1,17 @@
+using CommunityToolkit.Maui.Extensions;
 using CommunityToolkit.Maui.Views;
 
 namespace PopupTestApp;
 
-public partial class SimplePopup : Popup
+public partial class SimplePopup : ContentPage
 {
     public SimplePopup()
     {
         InitializeComponent();
     }
 
-    private void OnCloseClicked(object? sender, EventArgs e)
+    private async void OnCloseClicked(object? sender, EventArgs e)
     {
-        this.CloseAsync();
+        await this.ClosePopupAsync();
     }
 }

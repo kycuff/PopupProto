@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Maui.Core;
+﻿using CommunityToolkit.Maui;
+using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Views;
 using System;
 using System.Collections.Generic;
@@ -8,17 +9,6 @@ namespace PopupProto.Features;
 
 public interface INavigationPopupFeature
 {
-    Task PopAllAsync();
-
-    Task PopAsync();
-
-    Task RemovePopupAsync(Popup popup);
-
-    Task<IPopupResult> PushAsync(Popup popup);
-
-    Task<IPopupResult> PushAsync<T>() where T : Popup;
-
-    Task<IPopupResult> PushAsync<T>(Action<T>? configure) where T : Popup;
-
-    IReadOnlyList<Popup> NavigationStack { get; }
+    Task<IPopupResult> ShowPopupAsync<T>(IPopupOptions? options = null, CancellationToken cancellationToken = default) where T : notnull;
+    Task<IPopupResult<TResult>> ShowPopupAsync<T, TResult>(IPopupOptions? options = null, CancellationToken cancellationToken = default) where T : notnull;
 }
