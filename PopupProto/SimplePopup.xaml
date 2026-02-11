@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage
+<toolkit:Popup
     x:Class="PopupTestApp.SimplePopup"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -14,4 +14,4 @@
             Text="Hello from Popup!" />
         <Button Clicked="OnCloseClicked" Text="Close" />
     </VerticalStackLayout>
-</ContentPage>
+</toolkit:Popup>
