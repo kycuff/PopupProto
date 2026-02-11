@@ -3,6 +3,7 @@
     <File Path="global.json" />
   </Folder>
   <Project Path="Plugin.Maui.SmartNavigation.Attributes/Plugin.Maui.SmartNavigation.Attributes.csproj" />
+  <Project Path="Plugin.Maui.SmartNavigation.MCTPopupExtensions/Plugin.Maui.SmartNavigation.MCTPopupExtensions.csproj" Id="c9e8a06f-8a1f-4789-8cd7-53b860fd0bd4" />
   <Project Path="Plugin.Maui.SmartNavigation.MopupsExtensions/Plugin.Maui.SmartNavigation.MopupsExtensions.csproj" />
   <Project Path="Plugin.Maui.SmartNavigation.SourceGenerators/Plugin.Maui.SmartNavigation.SourceGenerators.csproj" />
   <Project Path="Plugin.Maui.SmartNavigation/Plugin.Maui.SmartNavigation.csproj" />
