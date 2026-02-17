@@ -40,23 +40,23 @@ public class NavigationPopupFeature : INavigationPopupFeature
         _popupService = popupService;
     }
 
-    public Task<IPopupResult> ShowPopupAsync<T>(IPopupOptions? options, CancellationToken cancellationToken) where T : notnull
+    public Task<IPopupResult> PushAsync<T>(INavigation navigation, IPopupOptions? options, CancellationToken cancellationToken) where T : Popup
     {
-        return _popupService.ShowPopupAsync<T>(Navigation, options, cancellationToken);
+        return navigation.PushAsync<T>(options, cancellationToken);
     }
 
-    public Task<IPopupResult<TResult>> ShowPopupAsync<T, TResult>(IPopupOptions? options, CancellationToken cancellationToken) where T : notnull
-    {
-        return _popupService.ShowPopupAsync<T, TResult>(Navigation, options, cancellationToken);
-    }
+    //public Task<IPopupResult<TResult>> ShowPopupAsync<T, TResult>(IPopupOptions? options, CancellationToken cancellationToken) where T : Page
+    //{
+    //    return _popupService.PushAsync<T, TResult>(options, cancellationToken);
+    //}
 
-    public Task<IPopupResult> ShowPopupAsync<T>(IPopupOptions? options, CancellationToken cancellationToken, params object[] parameters) where T : Popup
-    {
-        return _popupService.ShowPopupAsync<T>(options, cancellationToken, parameters);
-    }
+    //public Task<IPopupResult> ShowPopupAsync<T>(IPopupOptions? options, CancellationToken cancellationToken, params object[] parameters) where T : Page
+    //{
+    //    return _popupService.PushAsync<T>(options, cancellationToken, parameters);
+    //}
 
-    public Task<IPopupResult<TResult>> ShowPopupAsync<T, TResult>(IPopupOptions? options, CancellationToken cancellationToken, params object[] parameters) where T : Popup
-    {
-        return _popupService.ShowPopupAsync<T, TResult>(options, cancellationToken, parameters);
-    }
+    //public Task<IPopupResult<TResult>> ShowPopupAsync<T, TResult>(IPopupOptions? options, CancellationToken cancellationToken, params object[] parameters) where T : Page
+    //{
+    //    return _popupService.PushAsync<T, TResult>(options, cancellationToken, parameters);
+    //}
 }

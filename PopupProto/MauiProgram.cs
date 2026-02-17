@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using Plugin.Maui.SmartNavigation;
 using PopupProto.Features;
 using PopupTestApp;
 
@@ -17,12 +18,14 @@ namespace PopupProto
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-                });
+                })
+                .UseSmartNavigation();
 
             builder.Services.AddSingleton<INavigationPopupFeature, NavigationPopupFeature>();
 
             // Register popups
             builder.Services.AddTransient<SimplePopup>();
+            builder.Services.AddTransient<MessagePopup>();
 
             // Register pages
             builder.Services.AddTransient<MainPage>();

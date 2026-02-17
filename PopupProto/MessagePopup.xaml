@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<baseLayouts:BasePopup x:Class="PopupTestApp.MessagePopup"
+                       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:baseLayouts="clr-namespace:PopupProto.BaseLayouts"
+                       xmlns:pages="clr-namespace:PopupTestApp"
+                       x:DataType="pages:MessagePopup"
+                       PopupTitle="{Binding Message.Title}">
+    <baseLayouts:BasePopup.BasePopupContent>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Label FontSize="16"
+                   HorizontalOptions="Center"
+                   Text="{Binding Message.Message}" />
+            <Button Clicked="OnSubmitClicked"
+                    HorizontalOptions="Center"
+                    Text="Submit" />
+        </VerticalStackLayout>
+    </baseLayouts:BasePopup.BasePopupContent>
+</baseLayouts:BasePopup>
