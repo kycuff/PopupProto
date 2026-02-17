@@ -34,18 +34,18 @@ namespace PopupProto
 
         private async void OnMessagePopup_Clicked(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    await _popupNavigation.ShowPopupAsync<MessagePopup>(null, CancellationToken.None, new MessagePopupModel
-            //    {
-            //        Title = "Test message popup title",
-            //        Message = "Test message popup message"
-            //    });
-            //}
-            //catch(Exception ex)
-            //{
+            try
+            {
+                await _popupNavigation.PushAsync<MessagePopup>(this.Navigation, null, CancellationToken.None, new MessagePopupModel
+                {
+                    Title = "Test message popup title",
+                    Message = "Test message popup message"
+                });
+            }
+            catch(Exception ex)
+            {
 
-            //}
+            }
 
         }
     }

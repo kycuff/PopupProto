@@ -108,7 +108,7 @@ public partial class BasePopup : Popup
     {
         if(bindable is BasePopup basePopup)
         {
-            basePopup.PopupBorder.VerticalOptions = basePopup.PopupVerticalOptions;
+            basePopup.VerticalOptions = basePopup.PopupVerticalOptions;
         }
     }
 }

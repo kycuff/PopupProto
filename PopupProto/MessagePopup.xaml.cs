@@ -10,6 +10,8 @@ public partial class MessagePopup : BasePopup
         InitializeComponent();
 
         Message = message;
+
+        BindingContext = this;
     }
 
     private async void OnCloseClicked(object? sender, EventArgs e)
