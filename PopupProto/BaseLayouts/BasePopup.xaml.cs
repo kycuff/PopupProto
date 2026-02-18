@@ -66,16 +66,22 @@ public partial class BasePopup : Popup
     {
         Animation loadingAnimation = new()
         {
-            { 0, 1, new Animation(_ => Opacity = _, Opacity, 1, Easing.CubicIn) },
-            { 0, 1, new Animation(_ => Scale = _, Scale, 1, Easing.BounceOut) }
+            { 0, 1, new Animation(_ => Opacity = _, Opacity, 1, Easing.SinOut) },
+            { 0, 1, new Animation(_ => Scale = _, Scale, 1, Easing.SinOut) }
         };
 
-        loadingAnimation.Commit(this, nameof(loadingAnimation), 16, 3500u, null);
+        loadingAnimation.Commit(this, nameof(loadingAnimation), 16, 300u, null);
     }
 
     public virtual void AnimationOnClose()
     {
+        Animation closingAnimation = new()
+        {
+            { 0, 1, new Animation(_ => Opacity = _, 1, Opacity, Easing.SinIn) },
+            { 0, 1, new Animation(_ => Scale = _, 1, Scale, Easing.SinIn) }
+        };
 
+        closingAnimation.Commit(this, nameof(closingAnimation), 16, 300u, null);
     }
 
     public virtual Task Initialise()
