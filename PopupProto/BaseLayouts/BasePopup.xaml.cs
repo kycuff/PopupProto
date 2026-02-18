@@ -77,8 +77,8 @@ public partial class BasePopup : Popup
     {
         Animation closingAnimation = new()
         {
-            { 0, 1, new Animation(_ => Opacity = _, 1, Opacity, Easing.SinIn) },
-            { 0, 1, new Animation(_ => Scale = _, 1, Scale, Easing.SinIn) }
+            { 0, 1, new Animation(_ => Opacity = _, Opacity, 0, Easing.SinIn) },
+            { 0, 1, new Animation(_ => Scale = _, Scale, 0.8, Easing.SinIn) }
         };
 
         closingAnimation.Commit(this, nameof(closingAnimation), 16, 300u, null);
