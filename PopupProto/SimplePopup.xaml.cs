@@ -1,9 +1,8 @@
-using CommunityToolkit.Maui.Extensions;
 using CommunityToolkit.Maui.Views;
 
 namespace PopupTestApp;
 
-public partial class SimplePopup : ContentPage
+public partial class SimplePopup : Popup
 {
     public SimplePopup()
     {
@@ -12,6 +11,6 @@ public partial class SimplePopup : ContentPage
 
     private async void OnCloseClicked(object? sender, EventArgs e)
     {
-        await this.ClosePopupAsync();
+        await CloseAsync();
     }
 }

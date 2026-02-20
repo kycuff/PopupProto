@@ -52,6 +52,23 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\Plugin.Maui.SmartNavigation.MCTPopupExtensions\Plugin.Maui.SmartNavigation.MCTPopupExtensions.csproj" />
+	  <ProjectReference Include="..\Plugin.Maui.SmartNavigation\Plugin.Maui.SmartNavigation.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="MessagePopup.xaml.cs">
+	    <DependentUpon>MessagePopup.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="BaseLayouts\BasePopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="MessagePopup.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="SimplePopup.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

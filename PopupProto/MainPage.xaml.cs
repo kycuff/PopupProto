@@ -16,13 +16,37 @@ namespace PopupProto
 
         private async void OnSimpleButtonClicked(object sender, EventArgs e)
         {
-            // Use the navigation popup feature
-            IPopupResult result = await _popupNavigation.ShowPopupAsync<SimplePopup>();
-
-            if(result is IPopupResult message)
+            try
             {
-                await DisplayAlertAsync("Result", message.ToString(), "OK");
+                // Use the navigation popup feature
+                IPopupResult result = await _popupNavigation.PushAsync<SimplePopup>(this.Navigation, null, CancellationToken.None);
+
+                if(result is IPopupResult message)
+                {
+                    await DisplayAlertAsync("Result", message.ToString(), "OK");
+                }
             }
+            catch(Exception ex)
+            {
+
+            }
+        }
+
+        private async void OnMessagePopup_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                await _popupNavigation.PushAsync<MessagePopup>(this.Navigation, null, CancellationToken.None, new MessagePopupModel
+                {
+                    Title = "Test message popup title",
+                    Message = "Test message popup message"
+                });
+            }
+            catch(Exception ex)
+            {
+
+            }
+
         }
     }
 }

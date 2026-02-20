@@ -8,11 +8,34 @@ namespace Plugin.Maui.SmartNavigation;
 
 public static class MCTPopupExtensions
 {
-    public static async Task<IPopupResult> PushAsync<T>(this IPopupService _, IPopupOptions? options, params object[] parameters) where T : Popup
+    public static Task<IPopupResult> PushAsync<T>(this INavigation navigation, IPopupOptions? options, CancellationToken cancellationToken) where T : Popup
+    {
+        var popup = NavigationExtensions.ResolvePage<T>();
+
+        var test = popup as Popup
+             ?? throw new ArgumentException("Could not resolve popup page");
+
+        return navigation.ShowPopupAsync(test, options, cancellationToken);
+    }
+    public static Task<IPopupResult> PushAsync<T>(this INavigation navigation, IPopupOptions? options, CancellationToken cancellationToken, params object[] parameters) where T : Popup
     {
         var popup = NavigationExtensions.ResolvePage<T>(parameters) as Popup
-            ?? throw new ArgumentException("Could not resolve popup page");
+           ?? throw new ArgumentException("Could not resolve popup page");
 
-        return await popup.Navigation.ShowPopupAsync(popup, options);
+        return navigation.ShowPopupAsync(popup, options, cancellationToken);
     }
+    public static Task<IPopupResult<TResult>> PushAsync<T, TResult>(this INavigation navigation, IPopupOptions? options, CancellationToken cancellationToken) where T : Page
+    {
+        var popup = NavigationExtensions.ResolvePage<T>() as Popup
+          ?? throw new ArgumentException("Could not resolve popup page");
+
+        return navigation.ShowPopupAsync<TResult>(popup, options, cancellationToken);
+    }
+    //public static Task<IPopupResult<TResult>> PushAsync<T, TResult>(this IPopupService popupService, IPopupOptions? options, CancellationToken cancellationToken, params object[] parameters) where T : Page
+    //{
+    //    var popup = NavigationExtensions.ResolvePage<T>(parameters) as Page
+    //      ?? throw new ArgumentException("Could not resolve popup page");
+
+    //    return popupService.ShowPopupAsync<T, TResult>(popup, options, cancellationToken);
+    //}
 }
