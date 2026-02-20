@@ -26,6 +26,7 @@ namespace PopupProto
             // Register popups
             builder.Services.AddTransient<SimplePopup>();
             builder.Services.AddTransient<MessagePopup>();
+            builder.Services.AddTransient<AddPopup>();
 
             // Register pages
             builder.Services.AddTransient<MainPage>();

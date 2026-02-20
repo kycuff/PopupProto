@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<baseLayouts:BasePopup x:Class="PopupProto.AddPopup"
+                       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                       xmlns:baseLayouts="clr-namespace:PopupProto.BaseLayouts"
+                       BackgroundColor="White"
+                       PopupTitle="Property"
+                       PopupVerticalOptions="Start">
+    <baseLayouts:BasePopup.BasePopupContent>
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,auto" RowSpacing="10">
+
+            <!-- No collections banner -->
+            <VerticalStackLayout Grid.Row="0"
+                                 Margin="15,0"
+                                 Padding="15"
+                                 BackgroundColor="{StaticResource Primary}"
+                                 Spacing="10">
+                <Label FontFamily="OpenSansRegular"
+                       HorizontalTextAlignment="Center"
+                       Text="No calendar associated with this address"
+                       TextColor="White" />
+                <Button Margin="15,0"
+                        BackgroundColor="Transparent"
+                        BorderColor="White"
+                        BorderWidth="1"
+                        CornerRadius="6"
+                        Text="Call"
+                        TextColor="White"
+                        VerticalOptions="Center" />
+            </VerticalStackLayout>
+
+            <!-- Search bar -->
+            <!--<Grid Grid.Row="1"
+                  Margin="15,0"
+                  ColumnDefinitions="*,Auto"
+                  ColumnSpacing="5">
+                <Border Grid.Column="0"
+                        Padding="10,0"
+                        BackgroundColor="{AppThemeBinding Light={StaticResource White},
+                                                          Dark={StaticResource OffBlack}}"
+                        Stroke="{StaticResource Gray200}"
+                        StrokeThickness="1">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="6" />
+                    </Border.StrokeShape>
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+                        <Label Grid.Column="0"
+                               FontSize="16"
+                               Text="🔍"
+                               VerticalTextAlignment="Center" />
+                        <Entry Grid.Column="1"
+                               Placeholder="Search address..."
+                               Text="123 Main Street"
+                               VerticalOptions="Center" />
+                        <Button Grid.Column="2"
+                                BackgroundColor="Transparent"
+                                FontSize="14"
+                                Text="✕"
+                                TextColor="{StaticResource Gray500}"
+                                WidthRequest="40" />
+                    </Grid>
+                </Border>
+                <Button Grid.Column="1"
+                        BackgroundColor="{StaticResource Primary}"
+                        CornerRadius="6"
+                        Text="Search"
+                        TextColor="White" />
+            </Grid>-->
+
+            <!-- Days Before picker -->
+            <Border Grid.Row="3"
+                    Margin="15,0"
+                    Padding="5"
+                    Stroke="{StaticResource Gray200}"
+                    StrokeThickness="1">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="6" />
+                </Border.StrokeShape>
+                <Picker Title="When" SelectedIndex="1">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>On the day</x:String>
+                            <x:String>1 day before</x:String>
+                            <x:String>2 days before</x:String>
+                            <x:String>3 days before</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </Border>
+
+            <!-- Time picker -->
+            <Border Grid.Row="4"
+                    Margin="15,0"
+                    Padding="5"
+                    Stroke="{StaticResource Gray200}"
+                    StrokeThickness="1">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="6" />
+                </Border.StrokeShape>
+                <VerticalStackLayout>
+                    <Label Margin="5,5,0,0"
+                           FontSize="12"
+                           Text="Time"
+                           TextColor="{StaticResource Gray400}" />
+                    <TimePicker Time="07:00:00" />
+                </VerticalStackLayout>
+            </Border>
+
+            <!-- Create Reminder button -->
+            <Button Grid.Row="5"
+                    Margin="15,0,15,15"
+                    BackgroundColor="{StaticResource Primary}"
+                    CornerRadius="6"
+                    Text="💾 Create Reminder"
+                    TextColor="White" />
+
+        </Grid>
+    </baseLayouts:BasePopup.BasePopupContent>
+</baseLayouts:BasePopup>
