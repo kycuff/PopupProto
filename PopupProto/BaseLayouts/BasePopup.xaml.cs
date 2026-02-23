@@ -37,7 +37,7 @@ public partial class BasePopup : Popup
     {
         InitializeComponent();
 
-        SetLoadValues(Container);
+        SetLoadValues(this);
 
         Opened += async (s, e) =>
         {
@@ -56,7 +56,7 @@ public partial class BasePopup : Popup
                 }
             }
 
-            AnimationOnOpen(Container);
+            AnimationOnOpen(this);
 
             _isFirstLoad = false;
 
@@ -64,13 +64,13 @@ public partial class BasePopup : Popup
         };
     }
 
-    public virtual void SetLoadValues(Border container)
+    public virtual void SetLoadValues(BasePopup container)
     {
         container.Opacity = 0;
         container.Scale = 0;
     }
 
-    public virtual void AnimationOnOpen(Border container)
+    public virtual void AnimationOnOpen(BasePopup container)
     {
         Animation loadingAnimation = new()
         {
@@ -82,15 +82,22 @@ public partial class BasePopup : Popup
     }
 
     // TODO: Trigger (button + background pressed)
-    public virtual void AnimationOnClose(Border container)
+    public virtual async Task AnimationOnClose(BasePopup container)
     {
+        TaskCompletionSource tcs = new();
+
         Animation closingAnimation = new()
         {
             { 0, 1, new Animation(_ => container.Opacity = _, Opacity, 0, Easing.SinIn) },
             { 0, 1, new Animation(_ => container.Scale = _, Scale, 0.8, Easing.SinIn) }
         };
 
-        closingAnimation.Commit(this, nameof(closingAnimation), 16, 300u, null);
+        closingAnimation.Commit(this, nameof(closingAnimation), 16, 300u, null, finished: delegate
+        {
+            tcs.SetResult();
+        });
+
+        await tcs.Task;
     }
 
     public virtual Task Initialise()
@@ -100,6 +107,7 @@ public partial class BasePopup : Popup
 
     private async void BtnClose_OnClicked(object? sender, EventArgs e)
     {
+        await AnimationOnClose(this);
         await CloseAsync();
     }
 
