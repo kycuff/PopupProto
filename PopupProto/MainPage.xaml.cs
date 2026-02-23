@@ -48,5 +48,17 @@ namespace PopupProto
             }
 
         }
+
+        private async void OnAddPopup_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                await _popupNavigation.PushAsync<AddPopup>(this.Navigation, null, CancellationToken.None);
+            }
+            catch(Exception ex)
+            {
+
+            }
+        }
     }
 }
