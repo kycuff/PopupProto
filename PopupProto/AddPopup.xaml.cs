@@ -23,7 +23,7 @@ public partial class AddPopup : BasePopup
             { 0, 1, new Animation(_ => container.TranslationY = _, container.TranslationY, 0, Easing.SinOut) }
         };
 
-        openAnimation.Commit(this, nameof(openAnimation), 16, 700u, null);
+        openAnimation.Commit(this, nameof(openAnimation), 16, 1500u, null);
     }
 
     public override void AnimationOnClose(Border container)
@@ -34,6 +34,6 @@ public partial class AddPopup : BasePopup
             { 0, 1, new Animation(_ => container.TranslationY = _, container.TranslationY, -200, Easing.SinIn) }
         };
 
-        closeAnimation.Commit(this, nameof(closeAnimation), 16, 300u, null);
+        closeAnimation.Commit(this, nameof(closeAnimation), 16, 700u, null);
     }
 }
