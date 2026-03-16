@@ -37,6 +37,8 @@ public partial class BasePopup : Popup
     {
         InitializeComponent();
 
+        this.BackgroundColor = Colors.Transparent;
+
         SetLoadValues(this);
 
         Opened += async (s, e) =>
