@@ -37,8 +37,6 @@ public partial class BasePopup : Popup
     {
         InitializeComponent();
 
-        this.BackgroundColor = Colors.Transparent;
-
         SetLoadValues(this);
 
         Opened += async (s, e) =>
@@ -69,15 +67,15 @@ public partial class BasePopup : Popup
     public virtual void SetLoadValues(BasePopup container)
     {
         container.Opacity = 0;
-        container.Scale = 0;
+        container.Container.Scale = 0;
     }
 
     public virtual void AnimationOnOpen(BasePopup container)
     {
         Animation loadingAnimation = new()
         {
-            { 0, 1, new Animation(_ => container.Opacity = _, Opacity, 1, Easing.SinOut) },
-            { 0, 1, new Animation(_ => container.Scale = _, Scale, 1, Easing.SinOut) }
+            { 0, 1, new Animation(_ => container.Opacity = _, container.Opacity, 1, Easing.SinOut) },
+            { 0, 1, new Animation(_ => container.Container.Scale = _, container.Container.Scale, 1, Easing.SinOut) }
         };
 
         loadingAnimation.Commit(this, nameof(loadingAnimation), 16, 300u, null);
@@ -90,8 +88,8 @@ public partial class BasePopup : Popup
 
         Animation closingAnimation = new()
         {
-            { 0, 1, new Animation(_ => container.Opacity = _, Opacity, 0, Easing.SinIn) },
-            { 0, 1, new Animation(_ => container.Scale = _, Scale, 0.8, Easing.SinIn) }
+            { 0, 1, new Animation(_ => container.Opacity = _, container.Opacity, 0, Easing.SinIn) },
+            { 0, 1, new Animation(_ => container.Container.Scale = _, container.Container.Scale, 0.8, Easing.SinIn) }
         };
 
         closingAnimation.Commit(this, nameof(closingAnimation), 16, 300u, null, finished: delegate
@@ -133,8 +131,14 @@ public partial class BasePopup : Popup
     {
         if(bindable is BasePopup basePopup)
         {
-            basePopup.VerticalOptions = basePopup.PopupVerticalOptions;
+            basePopup.Container.VerticalOptions = basePopup.PopupVerticalOptions;
         }
+    }
+
+    private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    {
+        await AnimationOnClose(this);
+        await CloseAsync();
     }
 }
 

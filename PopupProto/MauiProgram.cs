@@ -13,7 +13,24 @@ namespace PopupProto
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
-                .UseMauiCommunityToolkit()
+                .UseMauiCommunityToolkit(options =>
+                {
+                    options.SetPopupDefaults(new DefaultPopupSettings
+                    {
+                        Margin = 0,
+                        Padding = 0,
+                        VerticalOptions = LayoutOptions.Fill,
+                        HorizontalOptions = LayoutOptions.Fill,
+                        BackgroundColor = Colors.Transparent,
+                        //CanBeDismissedByTappingOutsideOfPopup = false
+                    });
+                    options.SetPopupOptionsDefaults(new DefaultPopupOptionsSettings
+                    {
+                        PageOverlayColor = Colors.Blue,
+                        Shape = null,
+                        Shadow = null
+                    });
+                })
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
