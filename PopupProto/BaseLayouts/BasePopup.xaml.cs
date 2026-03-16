@@ -37,7 +37,7 @@ public partial class BasePopup : Popup
     {
         InitializeComponent();
 
-        SetLoadValues(this);
+        SetLoadValues(this, this.Container);
 
         Opened += async (s, e) =>
         {
@@ -56,7 +56,7 @@ public partial class BasePopup : Popup
                 }
             }
 
-            AnimationOnOpen(this);
+            AnimationOnOpen(this, this.Container);
 
             _isFirstLoad = false;
 
@@ -64,13 +64,13 @@ public partial class BasePopup : Popup
         };
     }
 
-    public virtual void SetLoadValues(BasePopup container)
+    public virtual void SetLoadValues(BasePopup container, Border popupContainer)
     {
         container.Opacity = 0;
         container.Container.Scale = 0;
     }
 
-    public virtual void AnimationOnOpen(BasePopup container)
+    public virtual void AnimationOnOpen(BasePopup container, Border popupContainer)
     {
         Animation loadingAnimation = new()
         {
@@ -82,7 +82,7 @@ public partial class BasePopup : Popup
     }
 
     // TODO: Trigger (button + background pressed)
-    public virtual async Task AnimationOnClose(BasePopup container)
+    public virtual async Task AnimationOnClose(BasePopup container, Border popupContainer)
     {
         TaskCompletionSource tcs = new();
 
@@ -107,7 +107,7 @@ public partial class BasePopup : Popup
 
     private async void BtnClose_OnClicked(object? sender, EventArgs e)
     {
-        await AnimationOnClose(this);
+        await AnimationOnClose(this, this.Container);
         await CloseAsync();
     }
 
@@ -137,7 +137,7 @@ public partial class BasePopup : Popup
 
     private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
-        await AnimationOnClose(this);
+        await AnimationOnClose(this, this.Container);
         await CloseAsync();
     }
 }
