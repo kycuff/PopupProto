@@ -8,6 +8,22 @@
             <Button Clicked="OnLoaderPopup_Clicked"
                     HorizontalOptions="Fill"
                     Text="Load Popup" />
+
+            <Button Clicked="TryFinallyExample_Clicked"
+                    HorizontalOptions="Fill"
+                    Text="Try finally statement" />
+
+            <Button Clicked="WithErrorMessage_Clicked"
+                    HorizontalOptions="Fill"
+                    Text="Test with error message" />
+
+            <Button Clicked="WithCustomText_Clicked"
+                    HorizontalOptions="Fill"
+                    Text="Custom text" />
+
+            <Button Clicked="ChangingMessage_Clicked"
+                    HorizontalOptions="Fill"
+                    Text="Changing Text" />
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
