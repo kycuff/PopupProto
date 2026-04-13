@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui.Core;
 using PopupProto.Features;
+using PopupProto.Loader;
 using PopupTestApp;
 
 namespace PopupProto
@@ -59,6 +60,13 @@ namespace PopupProto
             {
 
             }
+        }
+
+        private async void OnLoaderPopup_Clicked(object sender, EventArgs e)
+        {
+            await using AppLoader loader = await AppLoader.CreateAsync("Loading...");
+
+            await Task.Delay(10000);
         }
     }
 }
