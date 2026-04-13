@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.Views;
-using Microsoft.Maui.Controls.Shapes;
 using Plugin.Maui.SmartNavigation;
 using System.Diagnostics;
 
@@ -48,18 +47,7 @@ public class NavigationPopupFeature : INavigationPopupFeature
 
     public Task<IPopupResult> PushAsync<T>(INavigation navigation, IPopupOptions? options, CancellationToken cancellationToken, params object[] parameters) where T : Popup
     {
-        var test = new PopupOptions
-        {
-            CanBeDismissedByTappingOutsideOfPopup = true,
-            PageOverlayColor = Colors.Orange.WithAlpha(0.5f),
-            Shape = new RoundRectangle
-            {
-                CornerRadius = new CornerRadius(4)
-            },
-
-        };
-
-        return navigation.PushAsync<T>(test, cancellationToken, parameters);
+        return navigation.PushAsync<T>(options, cancellationToken, parameters);
     }
 
     //public Task<IPopupResult<TResult>> ShowPopupAsync<T, TResult>(IPopupOptions? options, CancellationToken cancellationToken) where T : Page

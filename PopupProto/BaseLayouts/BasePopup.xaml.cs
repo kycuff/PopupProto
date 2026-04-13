@@ -37,7 +37,7 @@ public partial class BasePopup : Popup
     {
         InitializeComponent();
 
-        SetLoadValues(this);
+        SetLoadValues(this, this.Container);
 
         Opened += async (s, e) =>
         {
@@ -56,7 +56,7 @@ public partial class BasePopup : Popup
                 }
             }
 
-            AnimationOnOpen(this);
+            AnimationOnOpen(this, this.Container);
 
             _isFirstLoad = false;
 
@@ -64,32 +64,32 @@ public partial class BasePopup : Popup
         };
     }
 
-    public virtual void SetLoadValues(BasePopup container)
+    public virtual void SetLoadValues(BasePopup container, Border popupContainer)
     {
         container.Opacity = 0;
-        container.Scale = 0;
+        container.Container.Scale = 0;
     }
 
-    public virtual void AnimationOnOpen(BasePopup container)
+    public virtual void AnimationOnOpen(BasePopup container, Border popupContainer)
     {
         Animation loadingAnimation = new()
         {
-            { 0, 1, new Animation(_ => container.Opacity = _, Opacity, 1, Easing.SinOut) },
-            { 0, 1, new Animation(_ => container.Scale = _, Scale, 1, Easing.SinOut) }
+            { 0, 1, new Animation(_ => container.Opacity = _, container.Opacity, 1, Easing.SinOut) },
+            { 0, 1, new Animation(_ => container.Container.Scale = _, container.Container.Scale, 1, Easing.SinOut) }
         };
 
         loadingAnimation.Commit(this, nameof(loadingAnimation), 16, 300u, null);
     }
 
     // TODO: Trigger (button + background pressed)
-    public virtual async Task AnimationOnClose(BasePopup container)
+    public virtual async Task AnimationOnClose(BasePopup container, Border popupContainer)
     {
         TaskCompletionSource tcs = new();
 
         Animation closingAnimation = new()
         {
-            { 0, 1, new Animation(_ => container.Opacity = _, Opacity, 0, Easing.SinIn) },
-            { 0, 1, new Animation(_ => container.Scale = _, Scale, 0.8, Easing.SinIn) }
+            { 0, 1, new Animation(_ => container.Opacity = _, container.Opacity, 0, Easing.SinIn) },
+            { 0, 1, new Animation(_ => container.Container.Scale = _, container.Container.Scale, 0.8, Easing.SinIn) }
         };
 
         closingAnimation.Commit(this, nameof(closingAnimation), 16, 300u, null, finished: delegate
@@ -107,7 +107,7 @@ public partial class BasePopup : Popup
 
     private async void BtnClose_OnClicked(object? sender, EventArgs e)
     {
-        await AnimationOnClose(this);
+        await AnimationOnClose(this, this.Container);
         await CloseAsync();
     }
 
@@ -131,8 +131,14 @@ public partial class BasePopup : Popup
     {
         if(bindable is BasePopup basePopup)
         {
-            basePopup.VerticalOptions = basePopup.PopupVerticalOptions;
+            basePopup.Container.VerticalOptions = basePopup.PopupVerticalOptions;
         }
+    }
+
+    private async void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    {
+        await AnimationOnClose(this, this.Container);
+        await CloseAsync();
     }
 }
 
