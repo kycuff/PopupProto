@@ -62,11 +62,9 @@ namespace PopupProto
             }
         }
 
-        private async void OnLoaderPopup_Clicked(object sender, EventArgs e)
+        private async void OnLoadingPopups_Clicked(object sender, EventArgs e)
         {
-            await using AppLoader loader = await AppLoader.CreateAsync("Loading...");
-
-            await Task.Delay(10000);
+            await Navigation.PushAsync(new LoadingPopups());
         }
     }
 }
