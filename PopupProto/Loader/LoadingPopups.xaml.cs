@@ -9,29 +9,50 @@ public partial class LoadingPopups : ContentPage
 
     private async void OnLoaderPopup_Clicked(object sender, EventArgs e)
     {
-        await using AppLoader loader = await AppLoader.CreateAsync("Loading...");
+        await using AppLoader loader = await AppLoader.CreateAsync();
 
-        await Task.Delay(10000);
+        await Task.Delay(2000);
     }
 
-    private void TryFinallyExample_Clicked(object sender, EventArgs e)
+    private async void TryFinallyExample_Clicked(object sender, EventArgs e)
     {
+        await using AppLoader loader = await AppLoader.CreateAsync();
 
+        await Task.Delay(2000);
     }
 
-    private void WithErrorMessage_Clicked(object sender, EventArgs e)
+    private async void WithErrorMessage_Clicked(object sender, EventArgs e)
     {
+        await using AppLoader loader = await AppLoader.CreateAsync();
 
+        try
+        {
+            await Task.Delay(2000);
+            throw new Exception();
+        }
+        catch(Exception ex)
+        {
+            await DisplayAlertAsync("Error", ex.Message, "Cancel");
+        }
     }
 
-    private void WithCustomText_Clicked(object sender, EventArgs e)
+    private async void WithCustomText_Clicked(object sender, EventArgs e)
     {
+        await using AppLoader loader = await AppLoader.CreateAsync("Custom loading message");
 
+        await Task.Delay(2000);
     }
 
-    private void ChangingMessage_Clicked(object sender, EventArgs e)
+    private async void ChangingMessage_Clicked(object sender, EventArgs e)
     {
+        await using AppLoader loader = await AppLoader.CreateAsync();
 
+        await Task.Delay(1000);
+        loader.UpdateText("Text 1");
+        await Task.Delay(1000);
+        loader.UpdateText("Text 2");
+        await Task.Delay(1000);
+        loader.UpdateText("Text 3");
+        await Task.Delay(1000);
     }
-
 }
