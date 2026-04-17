@@ -7,13 +7,12 @@
                Color="Transparent">
 
     <Grid Padding="20"
-          BackgroundColor="Red"
           HorizontalOptions="Fill"
           SafeAreaEdges="None"
           VerticalOptions="Fill">
         <Border Margin="10"
-                HorizontalOptions="Center"
                 BackgroundColor="White"
+                HorizontalOptions="Center"
                 StrokeThickness="0"
                 VerticalOptions="Center">
             <Border.StrokeShape>

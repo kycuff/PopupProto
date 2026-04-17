@@ -26,7 +26,7 @@ namespace PopupProto
                     });
                     options.SetPopupOptionsDefaults(new DefaultPopupOptionsSettings
                     {
-                        PageOverlayColor = Colors.Blue,
+                        PageOverlayColor = Color.FromArgb("99000000"),
                         Shape = null,
                         Shadow = null
                     });
