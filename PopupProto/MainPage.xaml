@@ -17,6 +17,14 @@
             <Button Clicked="OnAddPopup_Clicked"
                     HorizontalOptions="Fill"
                     Text="Add Popup" />
+
+            <Button Clicked="OnReturnObjectPopup_Clicked"
+                    HorizontalOptions="Fill"
+                    Text="Return Object Popup" />
+
+            <Button Clicked="OnLoadingPopups_Clicked"
+                    HorizontalOptions="Fill"
+                    Text="Loading Popups" />
         </VerticalStackLayout>
     </ScrollView>
 

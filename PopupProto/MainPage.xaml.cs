@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui.Core;
 using PopupProto.Features;
+using PopupProto.Loader;
 using PopupTestApp;
 
 namespace PopupProto
@@ -59,6 +60,45 @@ namespace PopupProto
             {
 
             }
+        }
+
+        private async void OnLoadingPopups_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new LoadingPopups());
+        }
+
+        private async void OnReturnObjectPopup_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                IPopupResult result = await _popupNavigation.PushAsync<SimplePopup>(this.Navigation, null, CancellationToken.None);
+
+                if(result is IPopupResult popupResult)
+                {
+                    TestObject testObj = new TestObject
+                    {
+                        Id = 123,
+                        Description = "Returned from Popup"
+                    };
+
+                    await DisplayAlertAsync("Return Object Result", testObj.ToString(), "OK");
+                }
+            }
+            catch(Exception ex)
+            {
+                // Handle exceptions appropriately
+            }
+        }
+    }
+
+    public class TestObject
+    {
+        public int Id { get; set; }
+        public string Description { get; set; }
+
+        public override string ToString()
+        {
+            return $"ID: {Id}, Description: {Description}";
         }
     }
 }
